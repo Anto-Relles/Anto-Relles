@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>About Me - Anto Relles</title>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+            
+        /* ================= VARIABLES & RESET ================= */
+        :root {
+            --bg-color: #0f192f;
+            --second-bg-color: #323946;
+            --text-color: #ffffffe2;
+            --main-color: rgb(18, 227, 255);
+            --accent-pink: #f15bb5;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            text-decoration: none; outline: none; border: none;
+            font-family: "Poppins", sans-serif; scroll-behavior: smooth;
+        }
+
+        html { font-size: 62.5%; overflow-x: hidden; width: 100%; }
+        body { background: var(--bg-color); color: var(--text-color); width: 100%; overflow-x: hidden; }
+        section { min-height: 100vh; padding: 10rem 9% 2rem; }
+
+        /* ================= CSS GENERAL ================= */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 9%;
+            background: var(--bg-color); display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: .3s;
+        }
+        .header.sticky { background: var(--second-bg-color); box-shadow: 0 0 1rem rgba(0,0,0,0.2); padding: 1.2rem 9%; }
+        .logo { font-size: 2.5rem; color: var(--text-color); font-weight: 600; cursor: pointer; font-style: italic; }
+        .logo span { color: var(--main-color); }
+        .navbar a { font-size: 1.7rem; color: var(--text-color); margin-left: 4rem; transition: 0.3s; font-weight: 500; }
+        .navbar a:hover, .navbar a.active { color: var(--main-color); }
+        #menu-icon { font-size: 3.6rem; color: var(--text-color); display: none; cursor: pointer; width: 2.8rem; height: 2.8rem; }
+
+        /* BUTTON STYLE */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 1rem;
+            padding: 1rem 2.8rem; background: var(--main-color); border-radius: 4rem;
+            box-shadow: 0 0 1rem var(--main-color); font-size: 1.6rem;
+            color: var(--second-bg-color); letter-spacing: .1rem; font-weight: 600;
+            transition: 0.5s ease; border: 2px solid var(--main-color); cursor: pointer;
+        }
+        .btn:hover { box-shadow: none; background: transparent; color: var(--main-color); }
+        .btn svg { width: 2rem; height: 2rem; }
+
+        /* ================= ABOUT SPECIFIC STYLES ================= */
+        .page-title { text-align: center; margin-bottom: 3rem; }
+        .page-title h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .page-title span { color: var(--main-color); }
+        
+        /* Container untuk konten About */
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Kartu Profil Utama */
+        .about-card {
+            background: var(--second-bg-color);
+            border: 2px solid var(--bg-color);
+            border-radius: 2rem;
+            padding: 4rem;
+            text-align: center;
+            box-shadow: 0 0 1rem var(--bg-color);
+            transition: .5s ease;
+            position: relative;
+            animation: popUp 0.8s ease forwards;
+            opacity: 0;
+            transform: scale(0.9);
+            width: 100%;
+        }
+
+        @keyframes popUp { to { opacity: 1; transform: scale(1); } }
+
+        .about-card:hover {
+            border-color: var(--main-color);
+            box-shadow: 0 0 25px var(--main-color);
+            transform: translateY(-5px);
+        }
+
+        /* Foto Profil (Optional: Jika ada foto, ganti src di HTML) */
+        .profile-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            border: 3px solid var(--main-color);
+            overflow: hidden;
+            box-shadow: 0 0 20px var(--main-color);
+        }
+        .profile-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Judul Peran (Roles) */
+        .role-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .role-badge {
+            font-size: 1.4rem;
+            padding: 0.8rem 2rem;
+            border: 1px solid var(--main-color);
+            border-radius: 2rem;
+            color: var(--main-color);
+            background: rgba(18, 227, 255, 0.05);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .role-badge:hover {
+            background: var(--main-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--main-color);
+        }
+
+        /* Teks Deskripsi */
+        .about-mission {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .about-desc {
+            font-size: 1.6rem;
+            color: #ccc;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-desc span {
+            color: var(--main-color);
+            font-weight: 500;
+        }
+
+        /* ================= THEME SWITCHER ================= */
+        .theme-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column-reverse; align-items: center; gap: 15px; touch-action: none; }
+        .theme-btn { width: 50px; height: 50px; background: var(--second-bg-color); border: 2px solid var(--main-color); border-radius: 50%; color: var(--main-color); display: flex; justify-content: center; align-items: center; cursor: grab; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); transition: transform 0.2s, border-color 0.3s, color 0.3s; user-select: none; -webkit-tap-highlight-color: transparent; }
+        .theme-btn:active { cursor: grabbing; transform: scale(0.95); }
+        .theme-btn svg { width: 24px; height: 24px; animation: spinGear 8s linear infinite; }
+        @keyframes spinGear { 100% { transform: rotate(360deg); } }
+        .theme-colors { display: flex; flex-direction: column; gap: 10px; background: rgba(15, 25, 47, 0.9); padding: 10px; border-radius: 50px; border: 1px solid var(--main-color); backdrop-filter: blur(5px); opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.8); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .theme-colors.active { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .color-box { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 2px solid rgba(255,255,255,0.8); transition: transform 0.2s; }
+        .color-box:hover { transform: scale(1.25); border-color: #fff; }
+        .rgb-btn { background: linear-gradient(135deg, red, orange, yellow, lime, cyan, blue, magenta, red); background-size: 400% 400%; animation: gradientBG 3s ease infinite; }
+        @keyframes gradientBG { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+
+        /* ================= RESPONSIVE QUERY ================= */
+        @media (max-width: 1200px) { html { font-size: 55%; } }
+        @media (max-width: 991px) {
+            .header { padding: 2rem 3%; } section { padding: 10rem 3% 2rem; }
+        }
+        @media (max-width: 768px) {
+            #menu-icon { display: block; } .header { padding: 1.5rem 4%; } .header.sticky { padding: 1.2rem 4%; }
+            .navbar {
+                position: absolute; top: 100%; left: 0; width: 100%; padding: 1rem 3%;
+                background: var(--bg-color); border-top: .1rem solid rgba(0,0,0,.2);
+                box-shadow: 0 .5rem 1rem rgba(0,0,0,.2); visibility: hidden; opacity: 0;
+                transform: translateY(-20px); transition: all 0.4s ease-in-out; 
+            }
+            .navbar.active { visibility: visible; opacity: 1; transform: translateY(0); }
+            .navbar a { display: block; font-size: 2rem; margin: 3rem 0; }
+            section { padding: 10rem 4% 2rem; } 
+            
+            .about-card { padding: 2rem; }
+            .about-mission { font-size: 1.8rem; }
+            .role-badge { font-size: 1.2rem; padding: 0.6rem 1.5rem; }
+        }
+        @media (max-width: 450px) {
+            html { font-size: 50%; } 
+            .theme-wrapper { bottom: 20px; right: 20px; } .theme-btn { width: 45px; height: 45px; }
+            .role-badges { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">Anto <span>Relles</span>.</a>
+        <div class="navbar"><a href="javascript:history.back()" class="active">Back to About Me</a></div>
+    </header>
+
+    <section id="about-section" style="display: block; padding-top: 10rem;">
+        <div class="page-title">
+            <h1>Tentang <span>Saya</span></h1>
+            <h3>Mengenal lebih dekat perjalanan profesional saya.</h3>
+        </div>
+
+        <div class="about-container">
+            <div class="about-card">
+                
+                <div class="profile-wrapper">
+                    <img src="../Logo-Anto-Relles/Anto-Relles.png" alt="Profile Anto Relles" onerror="this.style.display='none'; document.querySelector('.profile-wrapper').innerHTML='<i data-feather=\'user\' style=\'width:50%;height:50%;color:var(--main-color);margin-top:25%;\'></i>'">
+                </div>
+
+                <div class="role-badges">
+                    <span class="role-badge">Affiliate Marketer</span>
+                    <span class="role-badge">Content Creator</span>
+                    <span class="role-badge">YouTuber</span>
+                </div>
+
+                <h3 class="about-mission">
+                    Membangun personal branding dan strategi konten digital<br>
+                    untuk membantu <span>pebisnis online</span> dan <span>UMKM</span> bertumbuh.
+                </h3>
+                
+                <p class="about-desc">
+                    Saya berfokus menciptakan konten yang <span>informatif</span>, <span>edukatif</span>, dan berorientasi pada hasil. 
+                    Memberikan rekomendasi produk serta tools yang relevan dan terpercaya, 
+                    serta menghadirkan konten visual dan video yang dikemas secara profesional 
+                    untuk meningkatkan kepercayaan audiens, memperkuat <span>brand positioning</span>, 
+                    dan mendorong pertumbuhan bisnis di era digital yang terus berkembang.
+                </p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;">
+            <a href="javascript:history.back()" class="btn secondary">Kembali ke About Me</a> 
+        </div>
+    </section>
+
+    <div class="theme-wrapper" id="themeWrapper">
+        <div class="theme-colors" id="themeColors">
+            <div class="color-box" style="background: rgb(18, 227, 255);" onclick="setColor('rgb(18, 227, 255)')"></div>
+            <div class="color-box" style="background: rgb(132, 132, 130);" onclick="setColor('rgb(132, 132, 130)')"></div>
+            <div class="color-box" style="background: rgb(3, 252, 61);" onclick="setColor('rgb(3, 252, 61)')"></div>
+            <div class="color-box" style="background: rgb(255, 0, 13);" onclick="setColor('rgb(255, 0, 13)')"></div>
+            <div class="color-box" style="background: rgb(255, 0, 234);" onclick="setColor('rgb(255, 0, 234)')"></div>
+            <div class="color-box rgb-btn" onclick="startRgbMode()"></div>
+        </div>
+        <div class="theme-btn" id="themeBtn"><i data-feather="settings"></i></div>
+    </div>
+
+    <script>
+        feather.replace();
+        
+        // SCRIPT THEME
+        const r = document.querySelector(':root'); let rgbInterval; 
+        function setColor(color) { clearInterval(rgbInterval); r.style.setProperty('--main-color', color); localStorage.setItem('preferredColor', color); document.getElementById('themeColors').classList.remove('active'); }
+        function startRgbMode() { clearInterval(rgbInterval); let hue = 0; rgbInterval = setInterval(() => { hue++; const color = `hsl(${hue}, 100%, 50%)`; r.style.setProperty('--main-color', color); if (hue >= 360) hue = 0; }, 20); localStorage.setItem('preferredColor', 'rgb-loop'); document.getElementById('themeColors').classList.remove('active'); }
+        const savedColor = localStorage.getItem('preferredColor'); if(savedColor === 'rgb-loop') startRgbMode(); else if(savedColor) setColor(savedColor);
+
+        // Script Drag Theme Button
+        const wrapper = document.getElementById('themeWrapper'); const btn = document.getElementById('themeBtn'); const menu = document.getElementById('themeColors');
+        let isDragging = false, startX, startY, initialLeft, initialTop, hasMoved = false;
+        function constrainToScreen() { const rect = wrapper.getBoundingClientRect(); let newLeft = rect.left, newTop = rect.top; if (newLeft < 10) newLeft = 10; if (newLeft + rect.width > window.innerWidth - 10) newLeft = window.innerWidth - rect.width - 10; if (newTop < 10) newTop = 10; if (newTop + rect.height > window.innerHeight - 10) newTop = window.innerHeight - rect.height - 10; wrapper.style.left = `${newLeft}px`; wrapper.style.top = `${newTop}px`; wrapper.style.right = 'auto'; wrapper.style.bottom = 'auto'; }
+        window.addEventListener('resize', () => { wrapper.style.left = ''; wrapper.style.top = ''; wrapper.style.right = '20px'; wrapper.style.bottom = '20px'; });
+        btn.addEventListener('click', () => { if (!hasMoved) menu.classList.toggle('active'); });
+        function dragStart(e) { if (e.target.classList.contains('color-box')) return; isDragging = true; hasMoved = false; const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX; const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY; startX = clientX; startY = clientY; const rect = wrapper.getBoundingClientRect(); initialLeft = rect.left; initialTop = rect.top; wrapper.style.right = 'auto'; wrapper.style.bottom = 'auto'; wrapper.style.left = initialLeft + 'px'; wrapper.style.top = initialTop + 'px'; document.body.style.userSelect = 'none'; }
+        function dragMove(e) { if (!isDragging) return; e.preventDefault(); const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX; const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY; const dx = clientX - startX, dy = clientY - startY; if (Math.abs(dx) > 5 || Math.abs(dy) > 5) hasMoved = true; wrapper.style.left = (initialLeft + dx) + 'px'; wrapper.style.top = (initialTop + dy) + 'px'; }
+        function dragEnd() { isDragging = false; document.body.style.userSelect = 'auto'; constrainToScreen(); }
+        btn.addEventListener('mousedown', dragStart); window.addEventListener('mousemove', dragMove); window.addEventListener('mouseup', dragEnd); btn.addEventListener('touchstart', dragStart, { passive: false }); window.addEventListener('touchmove', dragMove, { passive: false }); window.addEventListener('touchend', dragEnd);
+    </script>
+</body>
+</html>

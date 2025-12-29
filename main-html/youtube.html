@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>YouTube Content - Anto Relles</title>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+            
+        /* ================= VARIABLES & RESET ================= */
+        :root {
+            --bg-color: #0f192f;
+            --second-bg-color: #323946;
+            --text-color: #ffffffe2;
+            --main-color: rgb(18, 227, 255); /* Cyan Default */
+            --accent-pink: #f15bb5;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            text-decoration: none; outline: none; border: none;
+            font-family: "Poppins", sans-serif; scroll-behavior: smooth;
+        }
+
+        html { font-size: 62.5%; overflow-x: hidden; width: 100%; }
+        body { background: var(--bg-color); color: var(--text-color); width: 100%; overflow-x: hidden; }
+        section { min-height: 100vh; padding: 10rem 9% 2rem; }
+
+        /* ================= CSS GENERAL ================= */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 9%;
+            background: var(--bg-color); display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: .3s;
+        }
+        .header.sticky { background: var(--second-bg-color); box-shadow: 0 0 1rem rgba(0,0,0,0.2); padding: 1.2rem 9%; }
+        .logo { font-size: 2.5rem; color: var(--text-color); font-weight: 600; cursor: pointer; font-style: italic; }
+        .logo span { color: var(--main-color); }
+        .navbar a { font-size: 1.7rem; color: var(--text-color); margin-left: 4rem; transition: 0.3s; font-weight: 500; }
+        .navbar a:hover, .navbar a.active { color: var(--main-color); }
+        #menu-icon { font-size: 3.6rem; color: var(--text-color); display: none; cursor: pointer; width: 2.8rem; height: 2.8rem; }
+
+        /* ================= HOME ================= */
+        .home { display: flex; align-items: center; justify-content: center; gap: 12rem; }
+        .home-content { flex: 1; max-width: 65rem; }
+        .home-content h3 { font-size: 3.2rem; font-weight: 700; }
+        .home-content h3:nth-of-type(2) { margin-bottom: 2rem; white-space: nowrap; display: inline-block; width: 52rem; }
+        .home-content h3 span.multiple-text { color: var(--main-color); }
+        .home-content h1 { font-size: 5.6rem; font-weight: 700; line-height: 1.3; color: var(--text-color); }
+        .home-content h1 span { color: var(--main-color); }
+        .home-content p { font-size: 1.6rem; margin-bottom: 3rem; }
+
+        .social-media a {
+            display: inline-flex; justify-content: center; align-items: center;
+            width: 4rem; height: 4rem; background: transparent;
+            border: .2rem solid var(--main-color); border-radius: 50%;
+            font-size: 2rem; color: var(--main-color); margin: 0 1.5rem 3rem 0;
+            transition: 0.5s ease;
+        }
+        .social-media a svg { width: 2rem; height: 2rem; }
+        .social-media a:hover { background: var(--main-color); color: var(--second-bg-color); box-shadow: 0 0 1rem var(--main-color); }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 1rem;
+            padding: 1rem 2.8rem; background: var(--main-color); border-radius: 4rem;
+            box-shadow: 0 0 1rem var(--main-color); font-size: 1.6rem;
+            color: var(--second-bg-color); letter-spacing: .1rem; font-weight: 600;
+            transition: 0.5s ease; border: 2px solid var(--main-color); cursor: pointer;
+        }
+        .btn:hover { box-shadow: none; background: transparent; color: var(--main-color); }
+        .btn svg { width: 2rem; height: 2rem; }
+
+        .home-img { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; }
+        .home-img .img-gradient { position: relative; width: 100%; max-width: 380px; display: flex; justify-content: center; z-index: 1; }
+        .home-img .img-gradient::after {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 74%; aspect-ratio: 1 / 1; border-radius: 50%;
+            border: 2px solid var(--main-color);
+            box-shadow: 0 0 20px var(--main-color), 0 0 60px var(--main-color);
+            z-index: -1; animation: pulseGlow 3s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px var(--main-color), 0 0 60px var(--main-color); opacity: 0.8; }
+            100% { box-shadow: 0 0 40px var(--main-color), 0 0 80px var(--main-color); opacity: 1; }
+        }
+        .home-img .img-gradient img {
+            width: 100%; animation: floatImage 4s ease-in-out infinite;
+            -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 72%);
+            mask-image: radial-gradient(circle at center, black 60%, transparent 72%);
+        }
+        @keyframes floatImage { 0% { transform: translateY(0); } 50% { transform: translateY(-2.4rem); } 100% { transform: translateY(0); } }
+
+        /* ================= ABOUT ================= */
+        .about { display: flex; justify-content: center; align-items: center; gap: 4rem; background: var(--second-bg-color); }
+        .about-img { flex: 1; display: flex; justify-content: center; align-items: center; }
+        .about-img img {
+            width: 35vw; max-width: 400px; border-radius: 2rem;
+            border: .2rem solid var(--main-color); box-shadow: 0 0 15px var(--main-color);
+            transition: .5s ease;
+        }
+        .about-img img:hover { transform: scale(1.02); box-shadow: 0 0 25px var(--main-color); }
+        .about-content { flex: 1; text-align: left; }
+        .heading { text-align: center; font-size: 4.5rem; margin-bottom: 3rem; }
+        .heading span { color: var(--main-color); }
+        .about-content h2 { text-align: left; line-height: 1.2; }
+        .about-content h3 { font-size: 2.6rem; }
+        .about-content p { font-size: 1.6rem; margin: 2rem 0 3rem; }
+
+        /* ================= SERVICES ================= */
+        .services h2 { margin-bottom: 5rem; }
+        .services-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .services-container .services-box {
+            background: var(--second-bg-color); padding: 3rem 2rem 4rem;
+            border-radius: 2rem; text-align: center; border: .2rem solid var(--bg-color);
+            transition: .5s ease; height: 100%; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .services-box-content { flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
+        .services-container .services-box:hover { border-color: var(--main-color); transform: translateY(-10px); }
+        .services-box svg { width: 6rem; height: 6rem; color: var(--main-color); margin-bottom: 1rem; }
+        .services-box h3 { font-size: 2.6rem; }
+        .services-box p { font-size: 1.6rem; margin: 1rem 0 3rem; }
+
+        /* ================= SUB-PAGES GRID (PORTFOLIO BOXES) ================= */
+        .page-title { text-align: center; margin-bottom: 4rem; }
+        .page-title h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .page-title span { color: var(--main-color); }
+        .page-title p { font-size: 1.6rem; max-width: 600px; margin: 0 auto; color: #ccc; }
+
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-box {
+            position: relative;
+            border-radius: 2rem;
+            box-shadow: 0 0 1rem var(--bg-color);
+            overflow: hidden;
+            display: flex;
+            aspect-ratio: 9 / 16; 
+            background: #20242d;
+            border: 2px solid var(--second-bg-color);
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s ease;
+                
+            animation: popUp 0.6s ease forwards;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        @keyframes popUp { to { opacity: 1; transform: scale(1); } }
+
+        .portfolio-box:hover {
+            border-color: var(--main-color);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 20px var(--main-color);
+        }
+
+        /* --- VIDEO LOCAL BACKGROUND STYLING (YOUTUBE & TIKTOK) --- */
+        .portfolio-box video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: 1; opacity: 0.8; transition: opacity 0.3s;
+        }
+        .portfolio-box:hover video { opacity: 1; }
+
+        /* --- AFFILIATE MARKETING STYLES --- */
+        .affiliate-item {
+            display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem;
+        }
+        .affiliate-title {
+            font-size: 1.8rem; color: var(--main-color); font-weight: 600;
+            min-height: 40px; display: flex; align-items: flex-end;
+        }
+        .affiliate-box {
+            position: relative; width: 100%; aspect-ratio: 1 / 1;
+            background: #20242d; border: 2px solid var(--second-bg-color);
+            border-radius: 2rem; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.5s ease; box-shadow: 0 0 1rem var(--bg-color);
+            animation: popUp 0.6s ease forwards;
+        }
+        .affiliate-box img {
+            width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease;
+        }
+        .affiliate-box:hover {
+            border-color: var(--main-color); box-shadow: 0 0 20px var(--main-color); transform: scale(1.05);
+        }
+        .affiliate-box:hover img {
+            transform: scale(1.1);
+        }
+            
+        /* TOMBOL STATIS AFFILIATE */
+        .affiliate-btn-static {
+            display: inline-block; padding: 0.8rem 2rem; background: var(--second-bg-color);
+            color: var(--main-color); border: 1px solid var(--main-color); border-radius: 2rem;
+            font-size: 1.4rem; font-weight: 600; transition: 0.3s; text-decoration: none;
+        }
+        .affiliate-btn-static:hover { background: var(--main-color); color: var(--bg-color); box-shadow: 0 0 10px var(--main-color); }
+
+
+        /* --- YOUTUBE/TIKTOK HOVER LAYER --- */
+        .yt-icon-visual { font-size: 5rem; color: #ff0000; animation: pulse 2s infinite; z-index: 1;}
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        .portfolio-layer {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, var(--second-bg-color) 10%, rgba(0,0,0,0.2) 80%);
+            display: flex; justify-content: center; align-items: center;
+            flex-direction: column; text-align: center; padding: 0 4rem;
+            transform: translateY(100%); transition: .5s ease;
+            z-index: 2; 
+        }
+        .portfolio-box:hover .portfolio-layer { transform: translateY(0); }
+        .portfolio-layer h4 { font-size: 2.4rem; color: var(--main-color); margin-bottom: 0.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .portfolio-layer p { font-size: 1.4rem; margin-bottom: 1rem; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+            
+        .portfolio-layer a.icon-btn { display: inline-flex; justify-content: center; align-items: center; width: 4rem; height: 4rem; background: #fff; border-radius: 50%; }
+        .portfolio-layer a.icon-btn svg { width: 2rem; height: 2rem; color: #333; }
+
+        /* ================= CONTACT ================= */
+        .contact form { max-width: 70rem; margin: 1rem auto; text-align: center; margin-bottom: 3rem; }
+        .contact form .input-box { display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .contact form .input-box input, .contact form textarea {
+            width: 100%; padding: 1.5rem; font-size: 1.6rem; color: var(--text-color);
+            background: var(--second-bg-color); border-radius: .8rem; margin: .7rem 0;
+        }
+        .contact form .input-box input { width: 49%; }
+        .contact form textarea { resize: none; height: 200px; }
+
+        /* ================= INTRO OVERLAY ================= */
+        #intro-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--bg-color); z-index: 10000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; transition: opacity 1s ease-in-out, visibility 1s; padding: 2rem;
+        }
+        .hide-intro { opacity: 0; visibility: hidden; pointer-events: none; }
+        .intro-content { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+        .intro-content img {
+            width: 250px; height: 250px; object-fit: cover; border-radius: 50%;
+            border: 6px solid var(--main-color); box-shadow: 0 0 50px var(--main-color);
+            opacity: 0; transform: scale(0); animation: popInImage 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popInImage { 100% { opacity: 1; transform: scale(1); } }
+        .intro-text {
+            font-size: 3.5rem; font-weight: 700; font-style: italic; color: var(--main-color);
+            text-shadow: 0 0 20px rgba(0,0,0,0.5); letter-spacing: 1px; min-height: 60px;
+            text-transform: uppercase; margin-bottom: 1rem;
+        }
+        #enter-btn {
+            opacity: 0; animation: fadeInBtn 1s ease forwards; animation-delay: 1.5s;
+            transform: translateY(20px); font-size: 1.8rem; padding: 1.2rem 3.5rem; cursor: pointer;
+        }
+        @keyframes fadeInBtn { to { opacity: 1; transform: translateY(0); } }
+
+        /* ================= FOOTER ================= */
+        .footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding: 2rem 9%; background: var(--second-bg-color); }
+        .footer-text p { font-size: 1.6rem; }
+        .footer-iconTop a { display: inline-flex; justify-content: center; align-items: center; padding: .8rem; background: var(--main-color); border-radius: .8rem; transition: .5s ease; }
+        .footer-iconTop a:hover { box-shadow: 0 0 1rem var(--main-color); }
+        .footer-iconTop a svg { width: 2.4rem; height: 2.4rem; color: var(--second-bg-color); }
+
+        /* WA MODAL */
+        .wa-modal { position: fixed; inset: 0; background: rgba(15, 25, 47, 0.9); display: flex; align-items: center; justify-content: center; z-index: 9999; opacity: 0; pointer-events: none; transition: .4s ease; }
+        .wa-modal.active { opacity: 1; pointer-events: auto; }
+        .wa-box { background: var(--second-bg-color); padding: 3rem 4rem; border-radius: 1.5rem; text-align: center; box-shadow: 0 0 25px var(--main-color); border: 1px solid var(--main-color); }
+        .wa-box h3 { font-size: 2.4rem; color: var(--main-color); margin-bottom: 1rem; }
+        .wa-box p { font-size: 1.6rem; margin-bottom: 2rem; }
+
+        /* ================= THEME SWITCHER ================= */
+        .theme-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column-reverse; align-items: center; gap: 15px; touch-action: none; }
+        .theme-btn { width: 50px; height: 50px; background: var(--second-bg-color); border: 2px solid var(--main-color); border-radius: 50%; color: var(--main-color); display: flex; justify-content: center; align-items: center; cursor: grab; box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); transition: transform 0.2s, border-color 0.3s, color 0.3s; user-select: none; -webkit-tap-highlight-color: transparent; }
+        .theme-btn:active { cursor: grabbing; transform: scale(0.95); }
+        .theme-btn svg { width: 24px; height: 24px; animation: spinGear 8s linear infinite; }
+        @keyframes spinGear { 100% { transform: rotate(360deg); } }
+        .theme-colors { display: flex; flex-direction: column; gap: 10px; background: rgba(15, 25, 47, 0.9); padding: 10px; border-radius: 50px; border: 1px solid var(--main-color); backdrop-filter: blur(5px); opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.8); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .theme-colors.active { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .color-box { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 2px solid rgba(255,255,255,0.8); transition: transform 0.2s; }
+        .color-box:hover { transform: scale(1.25); border-color: #fff; }
+        .rgb-btn { background: linear-gradient(135deg, red, orange, yellow, lime, cyan, blue, magenta, red); background-size: 400% 400%; animation: gradientBG 3s ease infinite; }
+        @keyframes gradientBG { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+
+        /* ================= RESPONSIVE QUERY ================= */
+        @media (max-width: 1200px) { html { font-size: 55%; } }
+        @media (max-width: 991px) {
+            .header { padding: 2rem 3%; } section { padding: 10rem 3% 2rem; } .services { padding-bottom: 7rem; } .comments { padding-bottom: 7rem; } .footer { padding: 2rem 3%; }
+            .home { flex-direction: column; gap: 4rem; text-align: center; } .home-content { padding-top: 2rem; max-width: 100%; }
+            .home-content h3 { font-size: 2.8rem; } .home-content h3:nth-of-type(2) { width: auto; min-width: 0; display: block; }
+            .home-img { width: 100%; margin: 2rem auto; } .home-img .img-gradient img { width: 55vw; max-width: 400px; }
+            .about { flex-direction: column; text-align: center; } .about-content h2 { text-align: center; } .about-img img { width: 70vw; margin-bottom: 2rem; }
+            .portfolio-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        }
+        @media (max-width: 768px) {
+            #menu-icon { display: block; } .header { padding: 1.5rem 4%; } .header.sticky { padding: 1.2rem 4%; }
+            .navbar {
+                position: absolute; top: 100%; left: 0; width: 100%; padding: 1rem 3%;
+                background: var(--bg-color); border-top: .1rem solid rgba(0,0,0,.2);
+                box-shadow: 0 .5rem 1rem rgba(0,0,0,.2); visibility: hidden; opacity: 0;
+                transform: translateY(-20px); transition: all 0.4s ease-in-out; 
+            }
+            .navbar.active { visibility: visible; opacity: 1; transform: translateY(0); }
+            .navbar a { display: block; font-size: 2rem; margin: 3rem 0; }
+            section { padding: 10rem 4% 2rem; } .home { gap: 5rem; }
+            .home-content { flex-direction: column; align-items: center; }
+            .home-content h3 { font-size: 2.4rem; letter-spacing: -0.5px; } .home-content h3:nth-of-type(2) { width: auto; min-width: 0; white-space: nowrap; }
+            .home-content h1 { font-size: 5rem; } .home-img .img-gradient img { width: 75vw; max-width: 350px; }
+            .comment-list-box { height: 400px; } .contact form .input-box input { width: 100%; }
+            .footer { flex-direction: column; justify-content: center; text-align: center; gap: 1.5rem; padding: 2.5rem 4%; } .footer-text { width: 100%; }
+            .social-media a { margin: 0 1rem 3rem 1rem; } .intro-content img { width: 180px; height: 180px; } .intro-text { font-size: 2.2rem; min-height: 40px; }
+                
+            /* 2 KOLOM DI HP/TABLET */
+            .portfolio-container { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        }
+        @media (max-width: 450px) {
+            html { font-size: 50%; } .home-content h3 { font-size: 2.2rem; letter-spacing: -1px; } .home-content h1 { font-size: 4rem; }
+            .home-img .img-gradient img { width: 85vw; max-width: 320px; } 
+            .theme-wrapper { bottom: 20px; right: 20px; } .theme-btn { width: 45px; height: 45px; }
+            .comment-list-box { height: 350px; } 
+                
+            /* 2 KOLOM DI HP KECIL */
+            .portfolio-container { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .portfolio-layer { padding: 0 1rem; }
+            .portfolio-layer h4 { font-size: 1.6rem; }
+            .portfolio-layer p { font-size: 1.2rem; margin-bottom: 0.5rem; }
+            .portfolio-layer a { width: 3rem; height: 3rem; }
+            .portfolio-layer a svg { width: 1.5rem; height: 1.5rem; }
+            .yt-icon-visual { font-size: 3rem; } 
+            .portfolio-box i { width: 40px !important; height: 40px !important; }
+
+            /* Penyesuaian Affiliate di HP */
+            .affiliate-title { font-size: 1.6rem; min-height: 30px; }
+            .affiliate-btn-static { padding: 0.5rem 1rem; font-size: 1.2rem; }
+        }
+    </style>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">Anto <span>Relles</span>.</a>
+        <div class="navbar"><a href="javascript:history.back()" class="active">Back to Portfolio</a></div>
+    </header>
+
+    <section id="youtube-section" style="display: block; padding-top: 10rem;">
+        <div class="page-title">
+            <h1>YouTube <span>Content</span></h1>
+            <p>Koleksi konten video terbaik yang telah saya buat.</p>
+        </div>
+
+        <!-- }==================================VIDEO YANG DI YOUTUBE CONTENT START=================================={ -->
+        <div class="portfolio-container">
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/proyektor-galaxy-astronot.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>PROYEKTOR GALAXY ASTRONOT</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/jt8LUKoFlQM?si=95FQXXi-1JCJc6uY" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/gamepad-x3-bluetooth.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>GAMEPAD X3 BLUETOOTH</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/wuq03nY0m8c?si=mfDJkcO08n55AFcB" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/hiasan-dinding-naruto.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>HIASAN DINDING NARUTO</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/yMloJnVcYxg?si=hs7WRBx4AsWIg-P-" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/jam-digital-aesthetic.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>JAM DIGITAL AESTHETIC</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/sWhUkLFE1To?si=UeeFUzdkZ0DIE8yj" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/lampu-awan-petir.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>LAMPU AWAN PETIR</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/PY88rqccLi0?si=SJ6MV-AVL4fH2WBn" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/meja-gaming-komputer.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>MEJA GAMING KOMPUTER</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/W4hJeAUUIz4?si=ZxINs9A_J1_R4N9-" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/pegboard-dinding.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>PEGBOARD DINDING</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/-l9JHm-pgyk?si=F_atzBAaY99fQy_o" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/papan-pegboard.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>PAPAN PEGBOARD</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/2dMj-MJIZ9o?si=NhSYqaxAIoL9U2bY" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/humidifier.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>HUMIDIFIER</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/TrUzS2Lgzso?si=Q9DJN5OB5eHt4zOu" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+            <div class="portfolio-box" onmouseover="playVideo(this)" onmouseout="pauseVideo(this)">
+                <video src="../Video-YouTube-Content/stand-dudukan-monitor.mp4" muted loop playsinline></video>
+                <div class="portfolio-layer"><h4>STAND DUDUKAN MONITOR</h4><p>Dekorasi kamar GAMING</p><a href="https://youtube.com/shorts/Ua5NItOvD7g?si=EeVeNJNc6U-cKYPn" class="icon-btn"><i data-feather="external-link"></i></a></div>
+            </div>
+        </div>
+        <!-- }==================================VIDEO YANG DI YOUTUBE CONTENT END=================================={ -->
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="javascript:history.back()" class="btn secondary">Back to Portfolio</a>
+        </div>
+    </section>
+
+    <div class="theme-wrapper" id="themeWrapper">
+        <div class="theme-colors" id="themeColors">
+            <div class="color-box" style="background: rgb(18, 227, 255);" onclick="setColor('rgb(18, 227, 255)')"></div>
+             <div class="color-box rgb-btn" onclick="startRgbMode()"></div>
+        </div>
+        <div class="theme-btn" id="themeBtn"><i data-feather="settings"></i></div>
+    </div>
+
+    <script>
+        feather.replace();
+
+        // LOGIC VIDEO PLAYER
+        function playVideo(element) {
+            const video = element.querySelector('video');
+            if (video) video.play().catch(e => console.log("Autoplay prevented"));
+        }
+        function pauseVideo(element) {
+            const video = element.querySelector('video');
+            if (video) { video.pause(); video.currentTime = 0; }
+        }
+
+        // LOGIC THEME SWITCHER (WAJIB SAMA DENGAN INDEX)
+        const r = document.querySelector(':root'); let rgbInterval; 
+        function setColor(color) { clearInterval(rgbInterval); r.style.setProperty('--main-color', color); localStorage.setItem('preferredColor', color); document.getElementById('themeColors').classList.remove('active'); }
+        function startRgbMode() { clearInterval(rgbInterval); let hue = 0; rgbInterval = setInterval(() => { hue++; const color = `hsl(${hue}, 100%, 50%)`; r.style.setProperty('--main-color', color); if (hue >= 360) hue = 0; }, 20); localStorage.setItem('preferredColor', 'rgb-loop'); document.getElementById('themeColors').classList.remove('active'); }
+        const savedColor = localStorage.getItem('preferredColor'); if(savedColor === 'rgb-loop') startRgbMode(); else if(savedColor) setColor(savedColor);
+        
+        // Logic Drag Theme Button (Copy dari index.html script bagian drag)
+        const wrapper = document.getElementById('themeWrapper'); const btn = document.getElementById('themeBtn'); const menu = document.getElementById('themeColors');
+        let isDragging = false, startX, startY, initialLeft, initialTop, hasMoved = false;
+        // ... (Paste sisa logic drag disini) ...
+        btn.addEventListener('click', () => { if (!hasMoved) menu.classList.toggle('active'); });
+        // ... (Pastikan event listener drag terpasang)
+    </script>
+</body>
+</html>
